@@ -1,0 +1,5 @@
+*.pyc
+venv/
+.git/
+.idea/
+opendata_projects_clean.csv

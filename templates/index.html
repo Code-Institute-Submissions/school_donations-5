@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>School Donations Dashboard</title>
+   <link rel="stylesheet" href="../static/lib/css//bootstrap.min.css">
+   <link rel="stylesheet" href="../static/lib/css/keen-dashboards.css">
+   <link rel="stylesheet" href="../static/lib/css/dc.css">
+   <link rel="stylesheet" href="../static/lib/css/introjs.css" />
+   <link rel="stylesheet" href="../static/css/custom.css">
+
+
+</head>
+<body class="application">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+       <div class="container-fluid">
+           <div class="navbar-header">
+               <a class="navbar-brand" href="./">School Donations Dashboard</a>
+           </div>
+           <button class="btn btn-sm btn-info" id="tour-button" type="button" autofocus onclick="javascript:introJs().start();">Start Tour!</button>
+       </div>
+    </div>
+
+    <a href="javascript:dc.filterAll(); dc.renderAll();"
+    data-step="1" data-intro="Click here anytime to reset the filters on the charts" style="font-weight: normal" data-position="right"
+    >Reset All</a>
+    <div  id="outer" class="container-fluid">
+        <div id="loading">
+                <h1>Loading...</h1>
+                <h4>Thank you for your patience.</h4>
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                  <defs>
+                    <filter id="gooey">
+                      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+                      <feBlend in="SourceGraphic" in2="goo"></feBlend>
+                    </filter>
+                  </defs>
+                </svg>
+                <div class="blob blob-0"></div>
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+                <div class="blob blob-3"></div>
+                <div class="blob blob-4"></div>
+                <div class="blob blob-5"></div>
+            </div>
+    <div class="row">
+        <!-- menu select -->
+           <div class="col-sm-6">
+               <div class="chart-wrapper"
+               data-step="2" data-intro="Select here to filter individual states" style="font-weight: normal" data-position="right">
+                   <div class="chart-title">
+                       Donation State
+                   </div>
+                   <div class="chart-stage">
+                       <div id="menu-select"></div>
+                   </div>
+               </div>
+           </div>
+        <!-- menu select -->
+          <!-- Metric 1 -->
+           <div class="col-sm-3" data-step="3" data-intro="Total number of donations - will update automatically as filters are applied" style="font-weight: normal" data-position="right">
+               <div class="chart-wrapper">
+                   <div class="chart-title">
+                       Total Number of Donations
+                   </div>
+                   <div class="chart-stage" style=" background: #33CC99;
+                       position: relative;
+                       font-size: 29px;
+                       color: white;
+                       vertical-align: middle;
+                       text-align: center;
+                       padding-top: 12px;
+                       padding-bottom: 0px;">
+                       <div id="number-projects-nd"></div>
+                   </div>
+               </div>
+           </div>
+           <!-- Metric 1 -->
+           <!-- Metric 2 -->
+           <div class="col-sm-3" data-step="4" data-intro="Total amount of donations - will update automatically as filters are applied" style="font-weight: normal" data-position="left">
+               <div class="chart-wrapper">
+                   <div class="chart-title">
+                       Total Donations in USD
+                   </div>
+                   <div class="chart-stage">
+                       <div id="total-donations-nd"></div>
+                   </div>
+               </div>
+           </div>
+           <!-- Metric 2 -->
+    </row>
+       <!-- Map -->
+       <div class="col-sm-6" data-step="5" data-intro="Shows the distribution of donations by state (USD). There are great differences between states." style="font-weight: normal" data-position="right">
+        <div class="chart-wrapper" id = "us-chart-wrapper">
+          <div class="chart-title">
+            Distribution of Donations
+          </div>
+          <div class="chart-stage">
+            <div id="us-chart"></div>
+          </div>
+        </div>
+      </div>
+       <!-- Map -->
+       <!-- Time Chart -->
+       <div class="col-sm-7" data-step="6" data-intro="Number of donations with time" style="font-weight: normal" data-position="right">
+           <div class="chart-wrapper" id = "time-chart-wrapper">
+               <div class="chart-title">
+                   Number of Donations
+               </div>
+               <div class="chart-stage">
+                   <div id="time-chart"></div>
+               </div>
+           </div>
+       </div>
+       <!-- Time Chart -->
+       <!-- Poverty -->
+       <div class="col-sm-4" data-step="7" data-intro="Number of projects by poverty level; There are many more donations in the 'highest poverty' areas." style="font-weight: normal" data-position="left">
+           <div class="chart-wrapper">
+               <div class="chart-title">
+                   Poverty Level
+               </div>
+               <div class="chart-stage">
+                   <div id="poverty-level-row-chart"></div>
+               </div>
+           </div>
+       </div>
+       <!-- Poverty -->
+       <!-- Resources -->
+       <div class="col-sm-4" data-step="8" data-intro="Number of donations by resource type - 'supplies' sees the greater number of donations." style="font-weight: normal" data-position="right">
+           <div class="chart-wrapper">
+               <div class="chart-title">
+                   Resources Type
+               </div>
+               <div class="chart-stage">
+                   <div id="resource-type-row-chart"></div>
+               </div>
+           </div>
+       </div>
+       <!-- Resources -->
+       <!-- funding Pie -->
+       <div class="col-sm-4" data-step="9" data-intro="Proportion of expired/completed/reallocated projects." style="font-weight: normal" data-position="right">
+           <div class="chart-wrapper">
+               <div class="chart-title">
+                   Funding Status
+               </div>
+               <div class="chart-stage">
+                   <div id="funding-chart"></div>
+               </div>
+           </div>
+       </div>
+       <!-- funding Pie -->
+       <!-- metro -->
+       <div class="col-sm-4" data-step="10" data-intro="Proportion of projects according to metro area: the majority are 'urban'." style="font-weight: normal" data-position="left">
+    <div class="chart-wrapper">
+       <div class="chart-title">
+           Metro Level
+       </div>
+       <div class="chart-stage">
+           <div id="metro-chart"></div>
+       </div>
+    </div>
+    </div>
+       <!-- metro -->
+    <div class="row">
+       <!-- focus area bubble-->
+       <div class="col-sm-8" data-step="11" data-intro="Funding to each focus area according to total amount and number of donations. 'Literacy and language' receives by far the greatest share." style="font-weight: normal" data-position="right">
+           <div class="chart-wrapper">
+               <div class="chart-title">
+                   Focus Area (mouse over for details)
+               </div>
+               <div class="chart-stage">
+                   <div id="focus-area-bubble-chart">
+                       <div>selected: <span class="filter"></span>
+                        <a class="reset" href="javascript:focusAreaBubble.filterAll();dc.redrawAll();" style="display:none;">reset</a>
+                    </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!-- focus area bubble-->
+       <!-- focus area bar chart-->
+       <div class="col-sm-4" data-step="12" data-intro="Total number of donations broken down by focus area." style="font-weight: normal" data-position="left">
+           <div class="chart-wrapper">
+               <div class="chart-title">
+                   Focus Area
+               </div>
+               <div class="chart-stage">
+                   <div id="focus-area-chart"></div>
+               </div>
+           </div>
+       </div>
+       <!-- focus area bar chart-->
+    </div>
+    <hr>
+    </div>
+    </div>
+    <p class="small text-muted"> Data viz &#9829; from Philippe Guyard</p>
+    <script src="./static/lib/js/jquery.min.js"></script>
+    <script src="./static/lib/js/bootstrap.min.js"></script>
+    <script src="./static/lib/js/crossfilter.js"></script>
+    <script src="./static/lib/js/d3.js"></script>
+    <script src="./static/lib/js/dc.js"></script>
+    <script src="./static/lib/js/queue.js"></script>
+    <script src="./static/lib/js/keen.min.js"></script>
+    <script src='./static/js/graph.js' type='text/javascript'></script>
+    <script src="./static/lib/js/intro.js" type="text/javascript"></script>
+</body>
+</html>
